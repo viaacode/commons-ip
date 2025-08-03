@@ -1,7 +1,7 @@
 package org.roda_project.commons_ip2.cli;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
@@ -87,7 +87,7 @@ public class Validate implements Callable<Integer> {
     LogSystem.logOperatingSystemInfo();
     LOGGER.debug("command executed: {}", commandLineString);
     if (reportType.equals(COMMONS_IP)) {
-      final OutputStream outputStream = ValidateCommandUtils.createReportOutputStream(reportPath);
+      final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
       if (outputStream != null) {
         final ValidationReportOutputJson jsonReporter = new ValidationReportOutputJson(sipPath, outputStream);
         final EARKSIPValidator earksipValidator = new EARKSIPValidator(jsonReporter, version);
@@ -96,6 +96,7 @@ public class Validate implements Callable<Integer> {
         }
         earksipValidator.validate(version);
       }
+      System.out.println(outputStream.toString());
     } else if (reportType.equals(PYIP)) {
       final ValidationReportOutputJSONPyIP jsonReporter = new ValidationReportOutputJSONPyIP(reportPath, sipPath);
       final EARKPyIPValidator earkPyIPValidator = new EARKPyIPValidator(jsonReporter, version);
@@ -106,7 +107,5 @@ public class Validate implements Callable<Integer> {
     } else {
       throw new CLIException("Unexpected value: " + reportType);
     }
-    new CommandLine(this).getOut().printf("E-ARK SIP validation report at '%s'%n",
-      reportPath.normalize().toAbsolutePath());
   }
 }
