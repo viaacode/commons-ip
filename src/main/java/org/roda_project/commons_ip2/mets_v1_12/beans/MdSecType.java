@@ -650,7 +650,7 @@ public class MdSecType {
      * {@link String }
      */
     public String getHref() {
-      return href;
+      return href.replace("+", "%2B");
     }
 
     /**
