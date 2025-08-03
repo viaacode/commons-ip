@@ -110,5 +110,9 @@
             <Term lang="en">Other</Term>
             <Definition>A term other than present in the vocabulary is used</Definition>
         </Entry>
+        <Entry>
+            <Term lang="en">OTHER</Term>
+            <Definition>A term other than present in the vocabulary is used</Definition>
+        </Entry>
     </Vocabulary>
 </Vocabularies>
