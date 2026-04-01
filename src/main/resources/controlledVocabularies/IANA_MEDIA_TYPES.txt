@@ -1609,8 +1609,13 @@ audio/vnd.rhetorex.32kadpcm
 audio/vnd.rip
 audio/vnd.sealedmedia.softseal.mpeg
 audio/vnd.vmx.cvsd
+audio/vnd.wav
+audio/vnd.wave
 audio/vorbis
 audio/vorbis-config
+audio/wav
+audio/wave
+audio/x-wav
 font/collection
 font/otf
 font/sfnt
